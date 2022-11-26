@@ -4,9 +4,24 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prepare": "husky install",
+    "start:dev": "nodemon",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint \"*.js\" --fix"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.28.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.2",
+    "lint-staged": "^13.0.4",
+    "nodemon": "^2.0.20",
+    "prettier": "^2.8.0"
+  },
+  "lint-staged": {
+    "*.js": "eslint --cache --fix --cache-location ./node_modules/.cache/.eslintcache"
+  }
 }
