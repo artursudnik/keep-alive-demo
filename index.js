@@ -2,7 +2,6 @@
 
 const http = require('http');
 const express = require('express');
-const os = require('os');
 
 const server = http.createServer();
 
@@ -12,36 +11,8 @@ server.keepAliveTimeout = 5000; // https://nodejs.org/api/http.html#serverkeepal
 server.headersTimeout = 60000; // https://nodejs.org/api/http.html#serverheaderstimeout
 server.requestTimeout = 300000; // https://nodejs.org/api/http.html#serverrequesttimeout
 
-server.on('connection', (socket) => {
-  const start = new Date();
-
-  console.log(
-    `[${new Date().toISOString()}]`,
-    `new connection from ${socket.remoteAddress}:${socket.remotePort}`
-  );
-
-  socket.on('close', (hadError) => {
-    console.log(
-      `[${new Date().toISOString()}]`,
-      `connection from ${socket.remoteAddress}:${socket.remotePort} closed${
-        hadError ? ' with error' : ''
-      }, ` +
-        `br=${socket.bytesRead}, bw=${socket.bytesWritten}, elapsed=${
-          new Date().getTime() - start.getTime()
-        }`
-    );
-  });
-});
-
 const PORT = process.env.PORT || 3000;
 const BIND = process.env.BIND || '127.0.0.1';
-
-server.on('listening', () => {
-  console.log(
-    `[${new Date().toISOString()}]`,
-    `server listening on http://${BIND}:${PORT}`
-  );
-});
 
 const app = express();
 
@@ -66,32 +37,8 @@ server.listen(PORT, BIND);
   process.on(signal, () => {
     shutdownInitiated = true;
 
-    console.log(
-      `${signal === 'SIGINT' ? '\n' : ''}[${new Date().toISOString()}]`,
-      `process received a ${signal} (${os.constants.signals[signal]}) signal`
-    );
-
-    console.log(`[${new Date().toISOString()}]`, 'stopping the server');
-
     server.close((err) => {
-      if (err) {
-        console.log(
-          `[${new Date().toISOString()}]`,
-          `server closed with error ${err}`
-        );
-      } else {
-        console.log(
-          `[${new Date().toISOString()}]`,
-          'server is stopping accepting new connections ' +
-            'and waiting for active connections to be closed'
-        );
-      }
-
       process.exit(err ? 1 : 0);
-    });
-
-    process.on('exit', (code) => {
-      console.log(`[${new Date().toISOString()}]`, `exiting with code ${code}`);
     });
   });
 });
