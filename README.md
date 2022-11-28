@@ -11,4 +11,4 @@
 * comment out the [line](https://github.com/artursudnik/keep-alive-demo/blob/main/index.js#L53)
   containing `res.set('Connection', 'Close');`
 * start the application and repeat all the steps
-* connection will not stop and application will not exit until killed or connection closed by the client
+* connection will not be terminated and application will not exit until killed or connection closed by the client
