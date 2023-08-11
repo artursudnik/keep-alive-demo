@@ -18,10 +18,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: node_modules
-          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock') }}
-          restore-keys: |
-            ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock') }}
-            ${{ runner.os }}-node_modules
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}
 
       - name: Install
         run: npm ci
@@ -44,7 +41,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: node_modules
-          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}
           fail-on-cache-miss: true
 
       - name: Run prettier
