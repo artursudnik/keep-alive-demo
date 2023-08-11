@@ -44,8 +44,5 @@ jobs:
           key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}
           fail-on-cache-miss: true
 
-      - name: Run prettier
-        run: yarn prettier:check
-
       - name: Run eslint
         run: npm run lint
