@@ -46,6 +46,8 @@ const app = express();
 let shutdownInitiated = false;
 
 app.use((req, res) => {
+  const start = Date.now();
+
   if (shutdownInitiated) {
     // without this, connected client can send requests endlessly and process will not exit
     res.set('Connection', 'Close');
@@ -53,6 +55,8 @@ app.use((req, res) => {
 
   setTimeout(() => {
     res.send('OK\n');
+    const logMessage = `[${new Date().toISOString()}] ${req.method} ${req.url} ${res.statusCode} ${Date.now() - start}ms`;
+    console.log(logMessage);
   }, 100);
 });
 
