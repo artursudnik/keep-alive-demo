@@ -1,8 +1,6 @@
-'use strict';
-
-const http = require('http');
-const express = require('express');
-const os = require('os');
+import http from 'http';
+import express from 'express';
+import os from 'os';
 
 const server = http.createServer();
 

@@ -15,6 +15,7 @@ const compat = new FlatCompat({
 export default [
   ...compat.extends('eslint:recommended', 'plugin:prettier/recommended'),
   {
+    files: ['*.mjs', '*.cjs', '*.js'],
     languageOptions: {
       globals: {
         ...globals.node,
@@ -22,7 +23,7 @@ export default [
       },
 
       ecmaVersion: 'latest',
-      sourceType: 'commonjs',
+      sourceType: 'module',
     },
 
     rules: {
