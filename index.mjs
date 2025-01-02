@@ -74,6 +74,11 @@ server.listen(PORT, BIND);
     );
 
     console.log(`[${new Date().toISOString()}]`, 'stopping the server');
+    console.log(
+      `[${new Date().toISOString()}]`,
+      'server stopped accepting new connections ' +
+        'and is waiting for active connections to be closed'
+    );
 
     server.close((err) => {
       if (err) {
@@ -82,11 +87,7 @@ server.listen(PORT, BIND);
           `server closed with error ${err}`
         );
       } else {
-        console.log(
-          `[${new Date().toISOString()}]`,
-          'server is stopping accepting new connections ' +
-            'and waiting for active connections to be closed'
-        );
+        console.log(`[${new Date().toISOString()}]`, 'server closed');
       }
 
       process.exit(err ? 1 : 0);
