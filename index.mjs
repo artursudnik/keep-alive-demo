@@ -45,7 +45,7 @@ const app = express();
 
 let shutdownInitiated = false;
 
-app.get('*', (req, res) => {
+app.use((req, res) => {
   if (shutdownInitiated) {
     // without this, connected client can send requests endlessly and process will not exit
     res.set('Connection', 'Close');
