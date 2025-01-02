@@ -6,7 +6,7 @@ const server = http.createServer();
 
 // below are defaults (nodejs v19) set explicitly
 server.timeout = 0; // https://nodejs.org/api/http.html#servertimeout
-server.keepAliveTimeout = 5000; // https://nodejs.org/api/http.html#serverkeepalivetimeout
+server.keepAliveTimeout = 60000; // https://nodejs.org/api/http.html#serverkeepalivetimeout
 server.headersTimeout = 60000; // https://nodejs.org/api/http.html#serverheaderstimeout
 server.requestTimeout = 300000; // https://nodejs.org/api/http.html#serverrequesttimeout
 
