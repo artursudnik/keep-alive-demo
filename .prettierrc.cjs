@@ -4,4 +4,13 @@ module.exports = {
   semi: true,
   singleQuote: true,
   printWidth: 80,
+  proseWrap: 'always',
+  overrides: [
+    {
+      files: ['*.yml', '*.yaml'],
+      options: {
+        proseWrap: 'preserve',
+      },
+    },
+  ],
 };
