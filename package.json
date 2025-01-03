@@ -31,6 +31,7 @@
     "prettier": "3.4.2"
   },
   "lint-staged": {
-    "*.{mjs,cjs,js}": "eslint --cache --fix --cache-location ./node_modules/.cache/.eslintcache"
+    "*.{mjs,cjs,js}": "eslint --cache --fix --cache-location ./node_modules/.cache/.eslintcache",
+    "*.{yml,yaml,json,md}": "prettier -w"
   }
 }
